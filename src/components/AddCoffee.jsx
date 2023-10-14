@@ -13,6 +13,17 @@ const AddCoffee = () => {
         const photo = form.photo.value;
         const newCoffee = { name, chef, supplier, taste, category, details, photo }
         console.log(newCoffee);
+        fetch('http://localhost:5000/coffee', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     }
     return (
         <div className="container mx-auto my-6 bg-[#F4F3F0] p-5 rounded">
