@@ -1,10 +1,23 @@
 
 
 const AddCoffee = () => {
+    const handleAddedCoffee = e => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value;
+        const chef = form.chef.value;
+        const supplier = form.supplier.value;
+        const taste = form.taste.value;
+        const category = form.category.value;
+        const details = form.details.value;
+        const photo = form.photo.value;
+        const newCoffee = { name, chef, supplier, taste, category, details, photo }
+        console.log(newCoffee);
+    }
     return (
         <div className="container mx-auto my-6 bg-[#F4F3F0] p-5 rounded">
             <h1 className="text-5xl text-center my-2">Add New Coffee</h1>
-            <form>
+            <form onSubmit={handleAddedCoffee}>
                 <div className="md:flex gap-3 px-2 md:px-1 mb-6">
                     <div className="form-control w-full">
                         <label className="label">
