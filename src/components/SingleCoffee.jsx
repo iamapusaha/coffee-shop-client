@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const SingleCoffee = ({ coffee }) => {
     const MySwal = withReactContent(Swal)
@@ -44,7 +45,7 @@ const SingleCoffee = ({ coffee }) => {
                 </div>
                 <div className="btn-group btn-group-vertical">
                     <button className="btn btn-active">Details</button>
-                    <button className="btn">update</button>
+                    <Link to={`/update/${_id}`}><button className="btn">update</button></Link>
                     <button onClick={() => handleDeleteCoffee(_id)} className="btn">Delete</button>
                 </div>
             </div>
