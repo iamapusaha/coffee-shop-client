@@ -2,7 +2,16 @@
 import PropTypes from 'prop-types';
 
 const SingleCoffee = ({ coffee }) => {
-    const { name, chef, supplier, taste, category, details, photo } = coffee;
+    const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
+    const handleDeleteCoffee = id => {
+        fetch(`http://localhost:5000/coffee/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
     return (
         <div className='rounded-lg'>
             <div className="flex justify-between items-center min-w-96 bg-base-100 shadow-xl p-7">
@@ -15,7 +24,7 @@ const SingleCoffee = ({ coffee }) => {
                 <div className="btn-group btn-group-vertical">
                     <button className="btn btn-active">Details</button>
                     <button className="btn">update</button>
-                    <button className="btn">Delete</button>
+                    <button onClick={() => handleDeleteCoffee(_id)} className="btn">Delete</button>
                 </div>
             </div>
         </div>
