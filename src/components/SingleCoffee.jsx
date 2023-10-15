@@ -3,7 +3,7 @@ import withReactContent from 'sweetalert2-react-content'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const SingleCoffee = ({ coffee }) => {
+const SingleCoffee = ({ coffee, coffees, setCoffees }) => {
     const MySwal = withReactContent(Swal)
     const { _id, name, chef, taste, photo } = coffee;
     const handleDeleteCoffee = id => {
@@ -24,11 +24,16 @@ const SingleCoffee = ({ coffee }) => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
-                        MySwal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
+                        if (data.deletedCount > 0) {
+                            MySwal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remanning = coffees.filter(cof => cof._id !== id)
+                            setCoffees(remanning)
+                        }
+
                     })
             }
         })
@@ -54,7 +59,9 @@ const SingleCoffee = ({ coffee }) => {
 };
 
 SingleCoffee.propTypes = {
-    coffee: PropTypes.object
+    coffee: PropTypes.object,
+    coffees: PropTypes.array,
+    setCoffees: PropTypes.func
 };
 
 export default SingleCoffee;
