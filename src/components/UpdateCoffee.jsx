@@ -3,10 +3,10 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdateCoffee = () => {
     const coffee = useLoaderData();
-    const { name, chef, supplier, taste, category, details, photo } = coffee
-    const handleAddedCoffee = e => {
-        e.preventDefault()
-        const form = e.target;
+    const { _id, name, chef, supplier, taste, category, details, photo } = coffee
+    const handleAddedCoffee = id => {
+        id.preventDefault()
+        const form = id.target;
         const name = form.name.value;
         const chef = form.chef.value;
         const supplier = form.supplier.value;
@@ -16,8 +16,8 @@ const UpdateCoffee = () => {
         const photo = form.photo.value;
         const newCoffee = { name, chef, supplier, taste, category, details, photo }
         console.log(newCoffee);
-        fetch('http://localhost:5000/coffee', {
-            method: "POST",
+        fetch(`http://localhost:5000/coffee/${_id}`, {
+            method: "PUt",
             headers: {
                 "content-type": "application/json"
             },
