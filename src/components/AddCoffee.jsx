@@ -1,7 +1,7 @@
 
 
 const AddCoffee = () => {
-    const handleAddedCoffee = e => {
+    const handleUpdateCoffee = e => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
@@ -28,7 +28,7 @@ const AddCoffee = () => {
     return (
         <div className="container mx-auto my-6 bg-[#F4F3F0] p-5 rounded">
             <h1 className="text-5xl text-center my-2">Add New Coffee</h1>
-            <form onSubmit={handleAddedCoffee}>
+            <form onSubmit={handleUpdateCoffee}>
                 <div className="md:flex gap-3 px-2 md:px-1 mb-6">
                     <div className="form-control w-full">
                         <label className="label">
