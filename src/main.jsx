@@ -8,6 +8,7 @@ import UpdateCoffee from './components/UpdateCoffee.jsx'
 import Root from './components/Root'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import AuthProvider from './providers/AuthProvider'
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,8 @@ const router = createBrowserRouter([
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

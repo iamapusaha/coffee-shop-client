@@ -1,13 +1,24 @@
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 // import PropTypes from 'prop-types';
 
 const SignUp = () => {
+    const { createUser } = useContext(AuthContext)
     const handleSignUp = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
