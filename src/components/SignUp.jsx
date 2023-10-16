@@ -13,8 +13,20 @@ const SignUp = () => {
         console.log(email, password);
         createUser(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                console.log(result.user);
+                const createdAt = result.user?.metadata?.creationTime;
+                const user = { email, createdAt: createdAt }
+                fetch('http://localhost:5000/user', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
             })
             .catch(error => {
                 console.error(error)
